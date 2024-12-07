@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project implements an advanced image forgery detection system using Error Level Analysis (ELA) and Convolutional Neural Networks (CNNs) to identify manipulated images.
+This project implements an advanced image forgery detection system using Error Level Analysis (ELA) and Convolutional Neural Networks (CNNs) to identify manipulated images with high accuracy.
 
 ## Dataset
 
@@ -11,12 +11,15 @@ This project implements an advanced image forgery detection system using Error L
   - Authentic Images: 3,683
   - Spliced Images: 1,440
 
-## Methodology
+## Dataset Characteristics
 
-### Preprocessing
-- Error Level Analysis (ELA) technique used to convert images
-- Image resizing to 128x128 pixels
-- Normalized pixel values
+- Wide range of image types
+- Covers various challenging scenarios:
+  - Object insertion
+  - Background replacement
+  - Composite scenes
+- Ground truth masks for each image
+- Carefully crafted tampered images to simulate realistic forgeries
 
 ## Model Architectures
 
@@ -65,22 +68,32 @@ This project implements an advanced image forgery detection system using Error L
 - Learning Rate: 0.001
 - Loss Function: Binary Crossentropy
 
-### Preprocessing Technique
-- Error Level Analysis (ELA) applied to all images
+### Training Configuration
+- Epochs: 15
+- Batch Size: 32
+- Early Stopping: 
+  - Monitored Metric: Validation Accuracy
+  - Patience: 10 epochs
+
+## Preprocessing Technique
+
+### Error Level Analysis (ELA)
 - Converts images to highlight potential forgery regions
 - Helps in feature extraction for model training
-
-## Key Features
-- Detects image splicing and tampering
-- Uses deep learning for robust feature extraction
-- Supports various image types and scenarios
+- Key steps:
+  - Resave image at specific quality
+  - Calculate pixel differences
+  - Enhance image to brighten suspicious regions
 
 ## Performance Metrics
 
 ### Model Accuracies
 - CNN (Adam Optimizer): 94.05%
 - CNN (RMSProp Optimizer): 92.36%
-- Random Forest: 89.21%
+
+### Comparative Analysis
+- Adam Optimizer showed slightly better performance
+- Deep learning models captured more intricate image features
 
 ## Technologies Used
 - Python
@@ -89,6 +102,16 @@ This project implements an advanced image forgery detection system using Error L
 - Numpy
 - Matplotlib
 - Seaborn
+
+## Future Improvements
+- Experiment with more advanced architectures
+- Integrate additional forgery detection techniques
+- Enhance model generalization
+- Develop real-time forgery detection system
+
+## References
+- [IEEE Paper](https://ieeexplore.ieee.org/document/10429021)
+- [Springer Article](https://link.springer.com/article/10.1007/s11063-024-11448-9)
 
 ## Author
 JUMANA.B
